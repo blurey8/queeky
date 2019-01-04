@@ -1,8 +1,14 @@
 language: python
 
+install:
+  - pip install codecov
+
 script:
   - python -m unittest discover
+  - pylint --output-format=text index.py
 
+after_success:
+  - codecov
 # deploy:
 #   provider: heroku
 #   api_key:
