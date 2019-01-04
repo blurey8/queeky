@@ -61,7 +61,7 @@ def handle_message(event):
     elif (query[0] == '.movie'):
         title = ' '.join(query[1:])
         url = 'http://www.omdbapi.com/?t={}&apikey=e943aca8'.format(title)
-        printx # error
+        # printx # error
         response = requests.get(url)
 
         # profile = line_bot_api.get_profile(event.source.user_id)
