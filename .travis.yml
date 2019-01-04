@@ -3,7 +3,7 @@ language: python
 script:
   - python -m unittest discover
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: $HEROKU_APIKEY
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: $HEROKU_APIKEY

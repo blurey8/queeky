@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 from dotenv import load_dotenv, find_dotenv
 import os
+import requests
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -39,8 +40,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    query = event.message.text.split()
+
     # Returning user profile detail
-    if (event.message.text == '.profile'):
+    if (query[0] == '.profile'):
         profile = line_bot_api.get_profile(event.source.user_id)
         line_bot_api.reply_message(
             event.reply_token,
@@ -54,6 +57,22 @@ def handle_message(event):
                 )
             )
         )
+
+    elif (query[0] == '.movie'):
+        title = ' '.join(query[1:])
+        url = 'http://www.omdbapi.com/?t={}&apikey=e943aca8'.format(title)
+        printx # error
+        response = requests.get(url)
+
+        # profile = line_bot_api.get_profile(event.source.user_id)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text=response.json()
+                )
+            )
+        )
+
     else:
         # Echo
         line_bot_api.reply_message(
