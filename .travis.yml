@@ -1,1 +1,6 @@
 language: python
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_APIKEY
