@@ -1,6 +1,7 @@
 language: python
 
 install:
+  - pip install -r requirements/dev.txt
   - pip install codecov
 
 script:
@@ -9,6 +10,7 @@ script:
 
 after_success:
   - codecov
+  
 # deploy:
 #   provider: heroku
 #   api_key:
